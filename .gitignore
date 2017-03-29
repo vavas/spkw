@@ -1,0 +1,7 @@
+/public/uploads
+/vendor
+/.idea
+.idea
+Homestead.yaml
+Homestead.json
+.env

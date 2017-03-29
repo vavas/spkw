@@ -1,0 +1,14 @@
+cd domains\dev\vendor\bin
+
+swagger /var/www/psa/app --output /var/www/psa/public/api
+
+
+
+page=1&
+length=10&
+order_by=identity&
+order_direction=desc&
+filters[socials][all]=false&
+filters[socials][twitter]=false&
+filters[socials][instagram]=false&
+filters[interests[interest_id]=true

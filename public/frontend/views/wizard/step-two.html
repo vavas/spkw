@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset class="ibox m-t-lg">
+                <div class="ibox-title">
+                    <h2>Interests</h2>
+                </div>
+                <div class="ibox-content">
+                    <h2>Tell Us Your Interests</h2>
+                    <p class="text-muted m-t-lg">
+                        We'll connect you with Campaigns that match your Interests.
+                    </p>
+                    <div class="row m-t-lg">
+                        <div class="col-md-12">
+                            <a class="badge m-r-xs"
+                                  ng-repeat="interest in interests"
+                                  ng-class="interest.selected ? 'badge-primary' : 'badge-default'"
+                                  ng-click="choose(interest)">{{interest.interest_name}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-footer">
+                    <div class="row">
+                        <div class="col-md-offset-8 col-md-2">
+                            <div ng-click="back('onboard.step-one')" class="btn btn-default btn-block">Back</div>
+                        </div>
+                        <div class="col-md-2">
+                            <div ng-click="next('onboard.step-three')" class="btn btn-primary btn-block">Next</div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

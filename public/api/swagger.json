@@ -1,0 +1,2273 @@
+{
+    "swagger": "2.0",
+//    "host": "api-dev.sparkwoo.com",
+    "paths": {
+        "/add-social-account": {
+            "post": {
+                "tags": [
+                    "Operations with Social Accounts"
+                ],
+                "summary": "Perform Add Social Accounts",
+                "description": "Add Influence Social Account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Add Account object",
+                        "in": "body",
+                        "description": "JSON Object which Add Account",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "Twitter": {
+                                    "properties": {
+                                        "social": {
+                                            "type": "string",
+                                            "example": "Twitter"
+                                        },
+                                        "username": {
+                                            "type": "string",
+                                            "example": "Steven_Jobs"
+                                        },
+                                        "user_id": {
+                                            "type": "string",
+                                            "example": "#123123123"
+                                        },
+                                        "followers": {
+                                            "type": "int",
+                                            "example": "5000"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn Error or true"
+                    }
+                }
+            }
+        },
+        "/edit-social-account": {
+            "post": {
+                "tags": [
+                    "Operations with Social Accounts"
+                ],
+                "summary": "Perform Edit Social Accounts",
+                "description": "Edit Influence Social Account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Add Account object",
+                        "in": "body",
+                        "description": "JSON Object which Edit Account",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "type": "int",
+                                    "example": "1"
+                                },
+                                "social": {
+                                    "type": "string",
+                                    "example": "Twitter"
+                                },
+                                "username": {
+                                    "type": "string",
+                                    "example": "Steven_Jobs"
+                                },
+                                "user_id": {
+                                    "type": "string",
+                                    "example": "#123123123"
+                                },
+                                "followers": {
+                                    "type": "int",
+                                    "example": "5000"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn Error or true"
+                    }
+                }
+            }
+        },
+        "/view-social-account": {
+            "post": {
+                "tags": [
+                    "Operations with Social Accounts"
+                ],
+                "summary": "Perform View Social Accounts",
+                "description": "View Influence Social Account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "View Account id",
+                        "in": "body",
+                        "description": "JSON Object which Delete Account",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "type": "int",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn Error or true"
+                    }
+                }
+            }
+        },
+        "/del-social-account": {
+            "post": {
+                "tags": [
+                    "Operations with Social Accounts"
+                ],
+                "summary": "Perform Delete Social Accounts",
+                "description": "Delete Influence Social Account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Delete Account id",
+                        "in": "body",
+                        "description": "JSON Object which Delete Account",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "type": "int",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn Error or true"
+                    }
+                }
+            }
+        },
+        "/create-brand": {
+            "post": {
+                "tags": [
+                    "Operations with Admin"
+                ],
+                "summary": "Perform update Brand",
+                "description": "Action create Brand",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "edit object",
+                        "in": "body",
+                        "description": "JSON Object which create Brand.",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "brand_name": {
+                                    "description": "Brand Name",
+                                    "type": "string",
+                                    "example": "New Brand"
+                                },
+                                "first_name": {
+                                    "description": "User Name",
+                                    "type": "string",
+                                    "example": "John"
+                                },
+                                "last_name": {
+                                    "description": "User Last Name",
+                                    "type": "string",
+                                    "example": "Smith"
+                                },
+                                "email": {
+                                    "description": "User email",
+                                    "type": "string",
+                                    "example": "john_smith@google.com"
+                                },
+                                "image_url": {
+                                    "description": "Brand Logo url (After Upload Action)",
+                                    "type": "string",
+                                    "example": "http://dev/uploads/093095da2b952dbcc90e4ce1b6080dd0.jpg"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn true or error message, The user is sent an e-mail"
+                    }
+                }
+            }
+        },
+        "/edit-brand/{identity}": {
+            "post": {
+                "tags": [
+                    "Operations with Admin"
+                ],
+                "summary": "Perform edit Brand",
+                "description": "Action edit Brand",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "brand identity",
+                        "required": true,
+                        "type": "string",
+                        "example": "DESC"
+                    },
+                    {
+                        "name": "edit object",
+                        "in": "body",
+                        "description": "JSON Object which edit Brand.",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "brand_name": {
+                                    "description": "Brand Name",
+                                    "type": "string",
+                                    "example": "New Brand"
+                                },
+                                "first_name": {
+                                    "description": "User Name",
+                                    "type": "string",
+                                    "example": "John"
+                                },
+                                "last_name": {
+                                    "description": "User Last Name",
+                                    "type": "string",
+                                    "example": "Smith"
+                                },
+                                "email": {
+                                    "description": "User email",
+                                    "type": "string",
+                                    "example": "john_smith@google.com"
+                                },
+                                "image_url": {
+                                    "description": "Brand Logo url (After Upload Action)",
+                                    "type": "string",
+                                    "example": "http://dev/uploads/093095da2b952dbcc90e4ce1b6080dd0.jpg"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a new brand or errors"
+                    }
+                }
+            }
+        },
+        "/create-interest": {
+            "post": {
+                "tags": [
+                    "Operations with Interests"
+                ],
+                "summary": "Perform create Interest",
+                "description": "Action create Interest",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "create object",
+                        "in": "body",
+                        "description": "JSON Object which create Interest.",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "interest_name": {
+                                    "description": "Interest Name",
+                                    "type": "string",
+                                    "example": "New Interest"
+                                },
+                                "status": {
+                                    "description": "Status - active or inactive",
+                                    "type": "string",
+                                    "example": "active"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn true or error message"
+                    }
+                }
+            }
+        },
+        "/edit-interest/{identity}": {
+            "post": {
+                "tags": [
+                    "Operations with Interests"
+                ],
+                "summary": "Perform Edit Interest",
+                "description": "To Edit an interest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining an interest ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    },
+                    {
+                        "name": "Edit Interest object",
+                        "in": "body",
+                        "description": "JSON Object which Edit Interest",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "interest_name": {
+                                    "description": "Interest Name",
+                                    "type": "string",
+                                    "example": "Edit Interest"
+                                },
+                                "status": {
+                                    "description": "Status - active or inactive",
+                                    "type": "string",
+                                    "example": "active"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To create a Interest. You must choose an interest to edit this interest"
+                    }
+                }
+            }
+        },
+        "/get-interest-list": {
+            "get": {
+                "tags": [
+                    "Operations with Interests"
+                ],
+                "summary": "Perform to get interests list. Influencer and Brand can see only active interests. Admin can see active and inactive interests.",
+                "description": "Get interests list",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Interests List"
+                    }
+                }
+            }
+        },
+        "/get-interest/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Interests"
+                ],
+                "summary": "Perform to get specified interest",
+                "description": "Get specified interest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining an interest ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get specified Interest"
+                    }
+                }
+            }
+        },
+        "/del-interest": {
+            "post": {
+                "tags": [
+                    "Operations with Interests"
+                ],
+                "summary": "Perform Delete Interest",
+                "description": "Action Delete Interest",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "delete object",
+                        "in": "body",
+                        "description": "JSON Object which Delete Interest.",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "identity": {
+                                    "description": "Interest unique identificator",
+                                    "type": "string",
+                                    "example": "81952d0a-7c2e-46cf-9c4e-70428c16fdb2"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn true or error message"
+                    }
+                }
+            }
+        },
+        "/create-temporary-account": {
+            "post": {
+                "tags": [
+                    "Operations with Admin"
+                ],
+                "summary": "Perform create influencer temporary account",
+                "description": "Action create influencer temporary account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "create object",
+                        "in": "body",
+                        "description": "JSON Object which create influencer temporary account.",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "first_name": {
+                                    "description": "First Name",
+                                    "type": "string",
+                                    "example": "First Name"
+                                },
+                                "last_name": {
+                                    "description": "Last Name",
+                                    "type": "string",
+                                    "example": "Last Name"
+                                },
+                                "email": {
+                                    "description": "Email Address",
+                                    "type": "string",
+                                    "example": "temporary_influencer@test.com"
+                                },
+                                "location": {
+                                    "description": "Location",
+                                    "type": "string",
+                                    "example": "Location"
+                                },
+                                "twitter_screen_name": {
+                                    "description": "Twitter Username",
+                                    "type": "string",
+                                    "example": "Twitter Username"
+                                },
+                                "twitter_id": {
+                                    "description": "Twitter User ID (id_str)",
+                                    "type": "string",
+                                    "example": "123312123"
+                                },
+                                "twitter_followers": {
+                                    "description": "Twitter Followers (number)",
+                                    "type": "string",
+                                    "example": "10000"
+                                },
+                                "twitter_verified": {
+                                    "description": "Twitter Verified: True or False",
+                                    "type": "string",
+                                    "example": "true"
+                                },
+                                "instagram_name": {
+                                    "description": "Instagram Username",
+                                    "type": "string",
+                                    "example": "Instagram Username"
+                                },
+                                "instagram_id": {
+                                    "description": "Instagram User ID",
+                                    "type": "string",
+                                    "example": "312123312"
+                                },
+                                "instagram_followers": {
+                                    "description": "Instagram Followers (number)",
+                                    "type": "string",
+                                    "example": "20000"
+                                },
+                                "instagram_verified": {
+                                    "description": "Instagram Verified: True or False",
+                                    "type": "string",
+                                    "example": "false"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn true or error message"
+                    }
+                }
+            }
+        },
+        "/get-brand/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Brands"
+                ],
+                "summary": "Perform Brand",
+                "description": "Action Get Brand",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a brand ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return brand or error message"
+                    }
+                }
+            }
+        },
+        "/del-brand": {
+            "post": {
+                "tags": [
+                    "Operations with Brands"
+                ],
+                "summary": "Perform Delete Brand",
+                "description": "Action Delete Brand",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "find object",
+                        "in": "body",
+                        "description": "JSON Object which Delete Brand.",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "identity": {
+                                    "description": "Brand unique identificator",
+                                    "type": "string",
+                                    "example": "81952d0a-7c2e-46cf-9c4e-70428c16fdb2"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn brand or error message"
+                    }
+                }
+            }
+        },
+        "/get-influencers-list": {
+            "get": {
+                "tags": [
+                    "Operations with Influencer"
+                ],
+                "summary": "Perform Influencer list",
+                "description": "Return Influencer list",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Filter Influencer query-string parameters",
+                        "in": "body",
+                        "description": "page=1&length=10&order_by=identity&order_direction=desc&\n    search=&filters[socials][all]=false&filters[socials][youtube]=false& filters[interests][all]=false&filters[interests][8958920c-fcb3-4389-a37c-9632d1f6629d]=true&\n    filters[gender][male]=true&\n    filters[gender][female]=true&\n    filters[age][all]=false&\n    filters[age][a37_42]=false&\n    filters[reach][all]=false&\n    filters[reach][r5_10]=false",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return Influencer list or Error"
+                    }
+                }
+            }
+        },
+        "/invite-influencer-to-campaign": {
+            "post": {
+                "tags": [
+                    "Operations with Brands"
+                ],
+                "summary": "Perform invite Influencer to Campaign",
+                "description": "The campaign invites influencer. Parameter - id of the Influencer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "invite influencer object",
+                        "in": "body",
+                        "description": "JSON Object which invite Influencer",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "influencer_id": {
+                                    "description": "Influencer unique identificator",
+                                    "type": "string",
+                                    "example": "56503db8-af1d-4c9e-9a3c-95a5f851144d"
+                                },
+                                "campaign_id": {
+                                    "description": "Compaign unique identificator",
+                                    "type": "string",
+                                    "example": "56503db8-af1d-4c9e-9a3c-95a5f851144d"
+                                },
+                                "compensation": {
+                                    "description": "Compensation provided per user. This will be a dollar amount $USD",
+                                    "type": "string",
+                                    "example": "100"
+                                },
+                                "consideration": {
+                                    "description": "A text entry for a product provided as consideration per user",
+                                    "type": "string",
+                                    "example": "consideration"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The campaign invites influencer"
+                    }
+                }
+            }
+        },
+        "/brand-accept-application/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Brands"
+                ],
+                "summary": "Perform to accept the application",
+                "description": "The brand takes the request to the campaign. Parameter - id invitations",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a invitation ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To create a campaign brand. You must choose a brand to create a campaign"
+                    }
+                }
+            }
+        },
+        "/brand-reject-application/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Brands"
+                ],
+                "summary": "Perform to reject the application campaign",
+                "description": "Brand rejects the request to the campaign. Parameter - id invitations",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a invitations ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To create a campaign brand. You must choose a brand to create a campaign"
+                    }
+                }
+            }
+        },
+        "/brand-view-campaigns": {
+            "get": {
+                "tags": [
+                    "Operations with Brands"
+                ],
+                "summary": "Brand can view his own campaigns",
+                "description": "Brand can view his own campaigns.",
+                "responses": {
+                    "200": {
+                        "description": "Gets campaigns list"
+                    }
+                }
+            }
+        },
+        "/get-campaign-list": {
+            "get": {
+                "tags": [
+                    "Operations with Campaign"
+                ],
+                "summary": "Perform Campaign list",
+                "description": "Return Campaign list",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Filter Campaign query-string parameters",
+                        "in": "body",
+                        "description": "page=1& length=10& order_by=identity& order_direction=desc& filters[socials][all]=false& filters[socials][instagram]=true& filters[interests][all]=false&filters[interests][interest_id]=false",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return Campaign list or Error"
+                    }
+                }
+            }
+        },
+        "/create-campaign": {
+            "post": {
+                "tags": [
+                    "Operations with Campaign"
+                ],
+                "summary": "Perform Create Campaign",
+                "description": "To create a campaign brand",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Create Campaign object",
+                        "in": "body",
+                        "description": "JSON Object which Create Campaign",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "brand_id": {
+                                    "type": "string",
+                                    "example": "81952d0a-7c2e-46cf-9c4e-70428c16fdb2"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "example": "New Campaign"
+                                },
+                                "social_network": {
+                                    "type": "string",
+                                    "example": "Twitter"
+                                },
+                                "type": {
+                                    "description": "Campaign type private or public",
+                                    "type": "string",
+                                    "example": "public"
+                                },
+                                "visibility": {
+                                    "description": "Visibility - draft or published",
+                                    "type": "string",
+                                    "example": "draft"
+                                },
+                                "submission_deadline": {
+                                    "type": "date",
+                                    "example": "2016-04-01"
+                                },
+                                "application_deadline": {
+                                    "type": "date",
+                                    "example": "2016-04-01"
+                                },
+                                "guidelines": {
+                                    "type": "array",
+                                    "example": [
+                                        {
+                                            "text": "guideline1"
+                                        }
+                                    ]
+                                },
+                                "media": {
+                                    "description": "Campaign media dropdown 'image','video','gif','brand provided'",
+                                    "type": "string",
+                                    "example": "image"
+                                },
+                                "interests": {
+                                    "type": "array",
+                                    "example": [
+                                        "8958920c-fcb3-4389-a37c-9632d1f6629d"
+                                    ]
+                                },
+                                "compensation": {
+                                    "type": "integer",
+                                    "example": "1"
+                                },
+                                "minimum_reach": {
+                                    "description": "the minimum number of subscribers",
+                                    "type": "integer",
+                                    "example": "100"
+                                },
+                                "posting_date": {
+                                    "type": "date",
+                                    "example": "2016-04-01"
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "example": "open"
+                                },
+                                "disclosure": {
+                                    "type": "string",
+                                    "example": "#SP"
+                                },
+                                "campaign_image": {
+                                    "type": "string",
+                                    "example": ""
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To create a campaign brand. You must choose a brand to create a campaign"
+                    }
+                }
+            }
+        },
+        "/edit-campaign/{identity}": {
+            "post": {
+                "tags": [
+                    "Operations with Campaign"
+                ],
+                "summary": "Perform Edit Campaign",
+                "description": "To Edit a campaign brand",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a campaign ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    },
+                    {
+                        "name": "Edit Campaign object",
+                        "in": "body",
+                        "description": "JSON Object which Edit Campaign",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "example": "New Campaign"
+                                },
+                                "social_network": {
+                                    "type": "string",
+                                    "example": "Twitter"
+                                },
+                                "type": {
+                                    "description": "Campaign type private or public",
+                                    "type": "string",
+                                    "example": "public"
+                                },
+                                "visibility": {
+                                    "description": "Visibility - draft or published",
+                                    "type": "string",
+                                    "example": "draft"
+                                },
+                                "submission_deadline": {
+                                    "type": "date",
+                                    "example": "2016-04-01"
+                                },
+                                "application_deadline": {
+                                    "type": "date",
+                                    "example": "2016-04-01"
+                                },
+                                "guidelines": {
+                                    "type": "array",
+                                    "example": [
+                                        {
+                                            "text": "guideline1"
+                                        }
+                                    ]
+                                },
+                                "media": {
+                                    "description": "Campaign media dropdown 'image','video','gif','brand provided'",
+                                    "type": "string",
+                                    "example": "image"
+                                },
+                                "interests": {
+                                    "type": "array",
+                                    "example": [
+                                        "Motorcycles"
+                                    ]
+                                },
+                                "compensation": {
+                                    "type": "string",
+                                    "example": "1"
+                                },
+                                "minimum_reach": {
+                                    "description": "the minimum number of subscribers",
+                                    "type": "integer",
+                                    "example": "100"
+                                },
+                                "posting_date": {
+                                    "type": "date",
+                                    "example": "2016-04-01"
+                                },
+                                "hashtag": {
+                                    "type": "sring",
+                                    "example": "#hashtag"
+                                },
+                                "mention": {
+                                    "type": "sring",
+                                    "example": ""
+                                },
+                                "url": {
+                                    "type": "sring",
+                                    "example": "http://my-campaign.com"
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "example": "open"
+                                },
+                                "disclosure": {
+                                    "type": "string",
+                                    "example": "#SP"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To create a campaign brand. You must choose a brand to create a campaign"
+                    }
+                }
+            }
+        },
+        "/get-campaign/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Campaign"
+                ],
+                "summary": "Perform view Campaign",
+                "description": "To view a campaign brand",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a campaign ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To create a campaign brand. You must choose a brand to create a campaign"
+                    }
+                }
+            }
+        },
+        "/del-campaign": {
+            "post": {
+                "tags": [
+                    "Operations with Campaign"
+                ],
+                "summary": "Perform delete Campaign",
+                "description": "To delete a campaign brand",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Delete Campaign object",
+                        "in": "body",
+                        "description": "JSON Object which delete Campaign",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "identity": {
+                                    "description": "Compaign unique identificator",
+                                    "type": "string",
+                                    "example": "56503db8-af1d-4c9e-9a3c-95a5f851144d"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To create a campaign brand. You must choose a brand to create a campaign"
+                    }
+                }
+            }
+        },
+        "/upload": {
+            "post": {
+                "tags": [
+                    "Auxiliary operations"
+                ],
+                "summary": "Perform upload image",
+                "description": "Action upload image",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "file",
+                        "in": "form",
+                        "description": "the image being loaded",
+                        "type": "file",
+                        "paramType": "body",
+                        "allowMultiple": "false"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a new brand or errors"
+                    }
+                }
+            }
+        },
+        "/get-states-list": {
+            "get": {
+                "tags": [
+                    "Auxiliary operations"
+                ],
+                "summary": "Perform states",
+                "description": "Action Get States list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn States list or error message"
+                    }
+                }
+            }
+        },
+        "/show-invitation/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Influencer"
+                ],
+                "summary": "Perform show invitation",
+                "description": "Influencer can view your invitations. Parameter - Influencer ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a Influencer ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Gets an array of objects (prompt) or an error"
+                    }
+                }
+            }
+        },
+        "/show-influencer-campaign/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Influencer"
+                ],
+                "summary": "Perform show influencer campaign",
+                "description": "Influencer can view campaigns in which it participates. Parameter - Influencer ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a Influencer ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Gets an array of objects (campaigns) or an error"
+                    }
+                }
+            }
+        },
+        "/influencer-accept-invited/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Influencer"
+                ],
+                "summary": "Perform to accept the invitation campaign",
+                "description": "Influencer takes the invitation campaign. Parameter - id invitations",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a invitation ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Receives the message about successful adoption of prompt or error"
+                    }
+                }
+            }
+        },
+        "/influencer-reject-invited/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Influencer"
+                ],
+                "summary": "Perform to reject the invitation campaign",
+                "description": "Influencer rejects the invitation campaign. Parameter - id invitations",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a invitations ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Receives the success message or reject the invitation a mistake"
+                    }
+                }
+            }
+        },
+        "/apply-to-campaign/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Influencer"
+                ],
+                "summary": "Perform apply Influencer to Campaign",
+                "description": "The user submits a request in the campaign. Parameter - id of the Campaign",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a campaign ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Receives the message about successful application in the campaign or an error message"
+                    }
+                }
+            }
+        },
+        "/get-influencer/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Influencer"
+                ],
+                "summary": "Perform view influencer profile",
+                "description": "view influencer profile",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "User identity (3627510e-2821-4ef1-b669-8244c46350f6)",
+                        "required": true,
+                        "type": "string",
+                        "example": "3627510e-2821-4ef1-b669-8244c46350f6"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User can see influencers profile"
+                    }
+                }
+            }
+        },
+        "/show-influencer-campaign-status/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Influencer"
+                ],
+                "summary": "Perform show influencer campaign status",
+                "description": "Influencer can view his campaign status. Parameter - Campaign ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a Campaign ID (e64d0697-515b-4f8d-9041-168984931fde)",
+                        "required": true,
+                        "type": "string",
+                        "example": "e64d0697-515b-4f8d-9041-168984931fde"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Gets objects (campaign) or an error"
+                    }
+                }
+            }
+        },
+        "/instagram/ios-verify": {
+            "post": {
+                "tags": [
+                    "Operations with Social account for IOS"
+                ],
+                "summary": "User add instagram account",
+                "description": "Action add instagram account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "find object",
+                        "in": "body",
+                        "description": "JSON Object which add instagram account.",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "identity": {
+                                    "description": "User unique identificator",
+                                    "type": "string",
+                                    "example": "303fff23-cc2c-4f26-8c77-18fd29ad6db8"
+                                },
+                                "name": {
+                                    "description": "Nickname in youtube",
+                                    "type": "string",
+                                    "example": "JerronimoIN"
+                                },
+                                "token": {
+                                    "description": "instagram unique token",
+                                    "type": "string",
+                                    "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1LCJpc3MiOiJodHRwOlwvXC9wc2EubG9jXC9sb2dpbiIsImlhdCI6MTQ2NDM0NDk4MSwiZXhwIjoxNzc5NzA0OTgxLCJuYmYiOjE0NjQzNDQ5ODEsImp0aSI6IjZlYzJkMjk1OGE3YmQ4ZjFiZjQyYTM0MDI1ZWQyOWQ3In0.hx2vkMGU4mn-nYsMlXx1oBte11aif-O1cqyEMf"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return success or error message"
+                    }
+                }
+            }
+        },
+        "/create-post": {
+            "post": {
+                "tags": [
+                    "Operations with Posts"
+                ],
+                "summary": "Perform Create Post",
+                "description": "To create a campaign post",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Create Post object",
+                        "in": "body",
+                        "description": "JSON Object which Create Post",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "campaign_id": {
+                                    "type": "string",
+                                    "example": "07fa523c-98bb-4951-8d6e-60646001fba9"
+                                },
+                                "text": {
+                                    "type": "string",
+                                    "example": "New Post"
+                                },
+                                "image_url": {
+                                    "type": "string",
+                                    "example": "https://s3-us-west-2.amazonaws.com/sparkwoo-uploads/uploads/9f9886f6bd8c9a4517537854d4917778.jpg"
+                                },
+                                "video_url": {
+                                    "type": "string",
+                                    "example": "http://dev/uploads/093095da2b952dbcc90e4ce1b6080dd0.mp4"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To create a campaign brand. You must choose a brand to create a campaign"
+                    }
+                }
+            }
+        },
+        "/resubmit-post/{identity}": {
+            "post": {
+                "tags": [
+                    "Operations with Posts"
+                ],
+                "summary": "Perform Resubmit Post",
+                "description": "To resubmit a campaign post",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a post identity (da4fab22-51b6-4581-b396-5ae34dcb8c13)",
+                        "required": true,
+                        "type": "string",
+                        "example": "da4fab22-51b6-4581-b396-5ae34dcb8c13"
+                    },
+                    {
+                        "name": "Resubmit Post object",
+                        "in": "body",
+                        "description": "JSON Object which Resubmit Post",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "campaign_id": {
+                                    "type": "string",
+                                    "example": "07fa523c-98bb-4951-8d6e-60646001fba9"
+                                },
+                                "text": {
+                                    "type": "string",
+                                    "example": "New Post"
+                                },
+                                "image_url": {
+                                    "type": "string",
+                                    "example": "http://dev/uploads/093095da2b952dbcc90e4ce1b6080dd0.jpg"
+                                },
+                                "video_url": {
+                                    "type": "string",
+                                    "example": "http://dev/uploads/093095da2b952dbcc90e4ce1b6080dd0.mp4"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To create a campaign brand. You must choose a brand to create a campaign"
+                    }
+                }
+            }
+        },
+        "/brand-posts-list": {
+            "get": {
+                "tags": [
+                    "Operations with Posts"
+                ],
+                "summary": "Perform Posts list",
+                "description": "Return Posts list",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return Posts list or Error"
+                    }
+                }
+            }
+        },
+        "/influencer-post-data/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with Posts"
+                ],
+                "summary": "Influencer Posts list",
+                "description": "Return Posts list",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return Posts list or Error"
+                    }
+                }
+            }
+        },
+        "/del-post": {
+            "post": {
+                "tags": [
+                    "Operations with Posts"
+                ],
+                "summary": "Perform delete Post",
+                "description": "To delete a campaign post",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Delete Post object",
+                        "in": "body",
+                        "description": "JSON Object which delete Post",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "identity": {
+                                    "description": "Post unique identificator",
+                                    "type": "string",
+                                    "example": "56503db8-af1d-4c9e-9a3c-95a5f851144d"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To create a campaign post. You must choose a campaign to create a post"
+                    }
+                }
+            }
+        },
+        "/brand-accept-post/{identity}": {
+            "post": {
+                "tags": [
+                    "Operations with Posts"
+                ],
+                "summary": "Perform to accept the post",
+                "description": "Brand accept post. Parameter - identity of post",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a post identity (da4fab22-51b6-4581-b396-5ae34dcb8c13)",
+                        "required": true,
+                        "type": "string",
+                        "example": "da4fab22-51b6-4581-b396-5ae34dcb8c13"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To accept post. You must choose a post to create an acceptance"
+                    }
+                }
+            }
+        },
+        "/brand-reject-post/{identity}": {
+            "post": {
+                "tags": [
+                    "Operations with Posts"
+                ],
+                "summary": "Perform to reject a post",
+                "description": "Brand reject post. Parameter - identity of post",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a post identity (da4fab22-51b6-4581-b396-5ae34dcb8c13)",
+                        "required": true,
+                        "type": "string",
+                        "example": "da4fab22-51b6-4581-b396-5ae34dcb8c13"
+                    },
+                    {
+                        "name": "Edit Post object",
+                        "in": "body",
+                        "description": "JSON Object which send reject reason",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "reason": {
+                                    "description": "Reject reason",
+                                    "type": "string",
+                                    "example": "Message"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "To reject post. You must choose a post to reject"
+                    }
+                }
+            }
+        },
+        "/schedule-post/{identity}": {
+            "post": {
+                "tags": [
+                    "Operations with Posts"
+                ],
+                "summary": "Perform to schedule the post",
+                "description": "Brand can schedule posts publishing . Parameter - identity of post",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a post identity (da4fab22-51b6-4581-b396-5ae34dcb8c13)",
+                        "required": true,
+                        "type": "string",
+                        "example": "da4fab22-51b6-4581-b396-5ae34dcb8c13"
+                    },
+                    {
+                        "name": "scheduled datetime",
+                        "in": "body",
+                        "description": "JSON Object with scheduled datetime",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "publish_at": {
+                                    "description": "Scheduled Datetime",
+                                    "type": "string",
+                                    "example": "2016-05-30 12:52:28"
+                                },
+                                "timezone": {
+                                    "description": "Pacific Time or Eastern Time",
+                                    "type": "string",
+                                    "example": "PDT"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Brand scheduled post publishing "
+                    }
+                }
+            }
+        },
+        "/twitter/ios-verify": {
+            "post": {
+                "tags": [
+                    "Operations with Social account for IOS"
+                ],
+                "summary": "User add twitter account",
+                "description": "Action add twitter account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "find object",
+                        "in": "body",
+                        "description": "JSON Object which add twitter account.",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "identity": {
+                                    "description": "User unique identificator",
+                                    "type": "string",
+                                    "example": "303fff23-cc2c-4f26-8c77-18fd29ad6db8"
+                                },
+                                "name": {
+                                    "description": "Nickname in Twitter",
+                                    "type": "string",
+                                    "example": "JerronimoIN"
+                                },
+                                "token": {
+                                    "description": "Twitter unique token",
+                                    "type": "string",
+                                    "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1LCJpc3MiOiJodHRwOlwvXC9wc2EubG9jXC9sb2dpbiIsImlhdCI6MTQ2NDM0NDk4MSwiZXhwIjoxNzc5NzA0OTgxLCJuYmYiOjE0NjQzNDQ5ODEsImp0aSI6IjZlYzJkMjk1OGE3YmQ4ZjFiZjQyYTM0MDI1ZWQyOWQ3In0.hx2vkMGU4mn-nYsMlXx1oBte11aif-O1cqyEMf"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return success or error message"
+                    }
+                }
+            }
+        },
+        "/sign-up": {
+            "post": {
+                "tags": [
+                    "Operations with users"
+                ],
+                "summary": "Perform Register User",
+                "description": "register form data validate and save, User role - New",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "register object",
+                        "in": "body",
+                        "description": "JSON Object which register user",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "example": "user@user.com"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "12345678"
+                                },
+                                "password_confirmation": {
+                                    "type": "string",
+                                    "example": "12345678"
+                                },
+                                "first_name": {
+                                    "type": "string",
+                                    "example": "Steven"
+                                },
+                                "last_name": {
+                                    "type": "string",
+                                    "example": "Jobs"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn true or error message"
+                    }
+                }
+            }
+        },
+        "/confirmation-email/{token}": {
+            "get": {
+                "tags": [
+                    "Operations with users"
+                ],
+                "summary": "Perform confirmation email",
+                "description": "confirmation email User",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "description": "Token is randomly generated and is disposable for each operation. Url, containing the token, sent to the email user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Verified User email and activate User"
+                    }
+                }
+            }
+        },
+        "/reset-password": {
+            "post": {
+                "tags": [
+                    "Operations with users"
+                ],
+                "summary": "Perform Reset Password",
+                "description": "Reset user password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "reset object",
+                        "in": "body",
+                        "description": "JSON Object which reset user password",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "example": "user@user.com"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn true or error message"
+                    }
+                }
+            }
+        },
+        "/edit-profile": {
+            "post": {
+                "tags": [
+                    "Operations with users"
+                ],
+                "summary": "Perform Edit Influencer of Brand Profile",
+                "description": "Edit profile, Good for editing, you must set the fields according to the descriptions of the model and type of the edited account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "register object",
+                        "in": "body",
+                        "description": "JSON Object which edit profile",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "first_name": {
+                                    "description": "For all types of profile",
+                                    "type": "string",
+                                    "example": "Steven"
+                                },
+                                "last_name": {
+                                    "description": "For all types of profile",
+                                    "type": "string",
+                                    "example": "Jobs"
+                                },
+                                "image_url": {
+                                    "description": "For influencers",
+                                    "type": "string",
+                                    "example": "http://dev/uploads/093095da2b952dbcc90e4ce1b6080dd0.jpg"
+                                },
+                                "gender": {
+                                    "description": "For influencers",
+                                    "type": "string",
+                                    "example": "Male"
+                                },
+                                "age": {
+                                    "description": "For influencers",
+                                    "type": "int",
+                                    "example": "25"
+                                },
+                                "location_state": {
+                                    "description": "For influencers",
+                                    "type": "string",
+                                    "example": "Washington"
+                                },
+                                "location_city": {
+                                    "description": "For influencers",
+                                    "type": "string",
+                                    "example": "Seattle"
+                                },
+                                "interests": {
+                                    "description": "For influencers",
+                                    "type": "string",
+                                    "example": ""
+                                },
+                                "paypal": {
+                                    "description": "For influencers",
+                                    "type": "string",
+                                    "example": "user@user.com"
+                                },
+                                "details": {
+                                    "description": "For Brands",
+                                    "type": "string",
+                                    "example": ""
+                                },
+                                "submission": {
+                                    "description": "For Brands",
+                                    "type": "string",
+                                    "example": "public"
+                                },
+                                "status": {
+                                    "description": "For Brands",
+                                    "type": "string",
+                                    "example": "public"
+                                },
+                                "hashtag": {
+                                    "description": "For Brands",
+                                    "type": "string",
+                                    "example": "#hashtag"
+                                },
+                                "url": {
+                                    "description": "For Brands",
+                                    "type": "string",
+                                    "example": "http://my-url.com"
+                                },
+                                "onboarding": {
+                                    "description": "after filling out the profile flag is set to 1 (true) or modified",
+                                    "type": "boolean",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn true or error message"
+                    }
+                }
+            }
+        },
+        "/user-profile/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with users"
+                ],
+                "summary": "Perform view influencer profile",
+                "description": "view influencer profile",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "User identity (3627510e-2821-4ef1-b669-8244c46350f6)",
+                        "required": true,
+                        "type": "string",
+                        "example": "3627510e-2821-4ef1-b669-8244c46350f6"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User can see influencers profile"
+                    }
+                }
+            }
+        },
+        "/change-password": {
+            "post": {
+                "tags": [
+                    "Operations with users"
+                ],
+                "summary": "Perform change password",
+                "description": "Edit form data validate and save,",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "change password object",
+                        "in": "body",
+                        "description": "JSON Object which edit profile",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "password_old": {
+                                    "type": "string",
+                                    "example": "12345678"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "12345678"
+                                },
+                                "password_confirmation": {
+                                    "type": "string",
+                                    "example": "12345678"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn true or error message"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Operations with users"
+                ],
+                "summary": "Perform login",
+                "description": "Login and password to log in. If User !Guest - redirect to home",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "login object",
+                        "in": "body",
+                        "description": "JSON Object which represents filter conditions",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "required": false,
+                                    "type": "string",
+                                    "example": "user@user.com"
+                                },
+                                "password": {
+                                    "required": true,
+                                    "type": "string",
+                                    "example": "12345678"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rerurn Error or Object User"
+                    }
+                }
+            }
+        },
+        "/del-profile": {
+            "get": {
+                "tags": [
+                    "Operations with users"
+                ],
+                "summary": "Perform delete profile",
+                "description": "delete User Profile",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete User Profile"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "get": {
+                "tags": [
+                    "Operations with users"
+                ],
+                "summary": "Perform logout",
+                "description": "logout User, redirect to home",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logout User, redirect to Home"
+                    }
+                }
+            }
+        },
+        "/login-as/{identity}": {
+            "get": {
+                "tags": [
+                    "Operations with users"
+                ],
+                "summary": "Perform login as another user",
+                "description": "login as another user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "User identity (3627510e-2821-4ef1-b669-8244c46350f6)",
+                        "required": true,
+                        "type": "string",
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Admin logged as user"
+                    }
+                }
+            }
+        },
+        "/modify-version/{identity}": {
+            "post": {
+                "tags": [
+                    "Operations with Version"
+                ],
+                "summary": "Perform modify Version",
+                "description": "modify version params",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "identity",
+                        "in": "path",
+                        "description": "obtaining a Bundle ID (com.sparkwoo.aphone)",
+                        "required": true,
+                        "type": "string",
+                        "example": "com.sparkwoo.aphone"
+                    },
+                    {
+                        "name": "version params",
+                        "in": "body",
+                        "description": "JSON Object which modify version",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "minimum_version": {
+                                    "description": "Minimum Version",
+                                    "type": "string",
+                                    "example": "1.0.0"
+                                },
+                                "current_version": {
+                                    "description": "Current Version",
+                                    "type": "string",
+                                    "example": "1.1.0"
+                                },
+                                "store_url": {
+                                    "description": "Store URL",
+                                    "type": "string",
+                                    "example": "iTunes URL"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The modify version or Error"
+                    }
+                }
+            }
+        },
+        "/get-version": {
+            "get": {
+                "tags": [
+                    "Operations with Version"
+                ],
+                "summary": "Perform Version information",
+                "description": "Return Version information",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "App Version and Bundle ID, query-string parameters",
+                        "in": "body",
+                        "description": "app_version=1.0.0&bundle_id=com.sparkwoo.aphone",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return Version information or Error"
+                    }
+                }
+            }
+        },
+        "/youtube/ios-verify": {
+            "post": {
+                "tags": [
+                    "Operations with Social account for IOS"
+                ],
+                "summary": "User add youtube account",
+                "description": "Action add youtube account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "find object",
+                        "in": "body",
+                        "description": "JSON Object which add youtube account.",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "identity": {
+                                    "description": "User unique identificator",
+                                    "type": "string",
+                                    "example": "303fff23-cc2c-4f26-8c77-18fd29ad6db8"
+                                },
+                                "name": {
+                                    "description": "Nickname in youtube",
+                                    "type": "string",
+                                    "example": "JerronimoIN"
+                                },
+                                "token": {
+                                    "type": "object",
+                                    "example": {
+                                        "access_token": "ya29.CjLyAr5DS9cKn4RYCr1IIilf_EQBpuvD_2KjEG-Z9I0iO8wLVD1P-o_CqbYIqbuF_D31qg",
+                                        "token_type": "Bearer",
+                                        "expires_in": 3600,
+                                        "created": 1464603099,
+                                        "refresh_token": "1/HKSmLFXzqP0leUihZp2xUt3-5wkU7Gmu2Os_eBnzw74"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return success or error message"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}

@@ -1,0 +1,272 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{sectionHeader}}</h2>
+        <ol class="breadcrumb">
+            <li ng-repeat="route in breadcrumb">
+                <a ui-sref="{{route.url}}">{{route.name}}</a>
+            </li>
+            <li class="active">
+                <strong>{{sectionHeader}}</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <h2 class="font-bold">Campaign Details</h2>
+                <form class="m-t" role="form" id="editCampaignForm" name="editCampaignForm" ng-submit="saveCampaign(url)">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Network</label>
+                                <select name="social_network" class="form-control"
+                                        ng-model="campaign.social_network"
+                                        ng-options="network as network for network in networks"
+                                        ng-focus="editCampaignForm.social_network.$error.serverError = false">
+                                </select>
+                                <p ng-show="editCampaignForm.social_network.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.social_network.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group" ng-if="loggedUser.role == 'admin'">
+                                <label>Brand</label>
+                                <select name="brand_id" class="form-control"
+                                       ng-model="campaign.brand_id"
+                                       ng-focus="editCampaignForm.brand_id.$error.serverError = false"
+                                       ng-options="brand.identity as brand.brand_name for brand in brands" >
+                                </select>
+                                <p ng-show="editCampaignForm.brand_id.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.brand_id.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" name="title" class="form-control" placeholder="Title"
+                                       ng-model="campaign.title"
+                                       ng-focus="editCampaignForm.title.$error.serverError = false">
+                                <p ng-show="editCampaignForm.title.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.title.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Url</label>
+                                <input type="text" name="url" class="form-control" placeholder="Url"
+                                       ng-model="campaign.url"
+                                       ng-focus="editCampaignForm.url.$error.serverError = false">
+                                <p ng-show="editCampaignForm.url.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.url.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Media</label>
+                                <select name="media" class="form-control"
+                                        ng-model="campaign.media"
+                                        ng-focus="editCampaignForm.media.$error.serverError = false"
+                                        ng-options="m as m for m in campaignMedia" >
+                                </select>
+                                <p ng-show="editCampaignForm.media.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.media.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Type</label>
+                                <div class="form-control">
+                                    <label>
+                                        <input type="radio" name="type"
+                                               ng-model="campaign.type"
+                                               value="public">
+                                        Public
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="type"
+                                               ng-model="campaign.type"
+                                               value="private">
+                                        Private <small>(Invite Only)</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Visibility</label>
+                                <select name="type" class="form-control"
+                                        ng-model="campaign.visibility"
+                                        ng-options="v as v for v in visibilities"
+                                        ng-focus="editCampaignForm.visibility.$error.serverError = false">
+                                </select>
+                                <p ng-show="editCampaignForm.visibility.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.visibility.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Submission Deadline</label>
+                                <p class="input-group">
+                                    <input type="text" class="form-control"
+                                           ng-focus="editCampaignForm.submission_deadline.$error.serverError = false"
+                                           uib-datepicker-popup
+                                           ng-model="campaign.submission_deadline" is-open="submissionDeadline" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="submissionDeadline = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                                <p ng-show="editCampaignForm.submission_deadline.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.submission_deadline.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group" ng-if="campaign.type == 'public'">
+                                <label>Application Deadline</label>
+                                <p class="input-group">
+                                    <input type="text" class="form-control"
+                                           ng-focus="editCampaignForm.application_deadline.$error.serverError = false"
+                                           uib-datepicker-popup ng-model="campaign.application_deadline" is-open="applicationDeadline" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="applicationDeadline = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                                <p ng-show="editCampaignForm.application_deadline.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.application_deadline.$error.errorMessage}}
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Interests</label>
+                                <select multiple chosen class="chosen-select form-control" name="interests"
+                                        ng-model="campaign.interests"
+                                        ng-options="i as i.interest_name for i in interests track by i.identity"
+                                        ng-change="editCampaignForm.interests.$error.serverError = false">
+                                </select>
+                                <p ng-show="editCampaignForm.interests.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.interests.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Hash Tags</label>
+                                <input type="text" class="form-control" name="hashtag"
+                                        ng-model="campaign.hashtag">
+                                <p ng-show="editCampaignForm.hashtag.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.hashtag.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Mentions</label>
+                                <input type="text" class="form-control" name="mention"
+                                       ng-model="campaign.mention">
+                                <p ng-show="editCampaignForm.mention.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.mention.$error.errorMessage}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Compensation</label>
+                                <input type="number" min="0" name="compensation" class="form-control" placeholder="Compensation"
+                                       ng-model="campaign.compensation"
+                                       ng-focus="editCampaignForm.compensation.$error.serverError = false">
+                                <p ng-show="editCampaignForm.compensation.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.compensation.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Other Compensation</label>
+                                <input type="text" name="other_compensation" class="form-control" placeholder="Other Compensation"
+                                       ng-model="campaign.other_compensation"
+                                       ng-focus="editCampaignForm.other_compensation.$error.serverError = false">
+                                <p ng-show="editCampaignForm.other_compensation.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.other_compensation.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Minimum Reach</label>
+                                <input type="number" min="0" name="minimum_reach" class="form-control" placeholder="Minimum Reach"
+                                       ng-model="campaign.minimum_reach"
+                                       ng-focus="editCampaignForm.minimum_reach.$error.serverError = false">
+                                <p ng-show="editCampaignForm.minimum_reach.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.minimum_reach.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Posting Date</label>
+                                <p class="input-group">
+                                    <input type="text" class="form-control"
+                                           name="posting_date"
+                                           ng-focus="editCampaignForm.posting_date.$error.serverError = false"
+                                           uib-datepicker-popup ng-model="campaign.posting_date" is-open="postingDate" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="postingDate = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                                <p ng-show="editCampaignForm.posting_date.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.posting_date.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="chosen-select form-control" name="status"
+                                        ng-model="campaign.status" ng-options="c as c for c in statuses"
+                                        ng-change="editCampaignForm.status.$error.serverError = false">
+                                </select>
+                                <p ng-show="editCampaignForm.status.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.status.$error.errorMessage}}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Disclosure</label>
+                                <select class="chosen-select form-control" name="disclosure"
+                                        ng-model="campaign.disclosure" ng-options="c as c for c in disclosures"
+                                        ng-change="editCampaignForm.disclosure.$error.serverError = false">
+                                </select>
+                                <p ng-show="editCampaignForm.disclosure.$error.serverError" class="text-danger">
+                                    {{editCampaignForm.disclosure.$error.errorMessage}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Campaign Image</label>
+                                <div class="btn btn-block btn-default" ngf-select="uploadImage(file)" ng-model="file" name="file" ngf-pattern="'image/*'"
+                                     ngf-accept="'image/*'" ngf-max-size="20MB">Choose</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Image Preview</label>
+                                <div class="upload-image-preview">
+                                    <img ng-src="{{campaign.campaign_image ? campaign.campaign_image : 'img/no-photo.jpg'}}">
+                                    <input type="text" name="campaign_image" class="hidden"
+                                           ng-model="campaign.campaign_image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="hidden" name="guidelines" ng-model="fake">
+                            <p ng-show="editCampaignForm.guidelines.$error.serverError" class="text-danger">
+                                {{editCampaignForm.guidelines.$error.errorMessage}}
+                            </p>
+                            <label>Guidelines</label>
+                            <div class="pull-right btn btn-primary inline btn-xs" ng-click="campaign.guidelines.push({text:''})">
+                                <i class="fa fa-plus-circle"></i>
+                                Add Guideline
+                            </div>
+                            <div class="m-t-sm" ng-repeat="guide in campaign.guidelines track by $index">
+                                <div class="input-group">
+                                    <input type="text" name="guideline"  class="form-control" placeholder="{{'Guideline ' +($index+1)}}"
+                                           ng-model="guide.text"
+                                           ng-focus="editCampaignForm.guidelines.$error.serverError = false">
+                                    <div class="input-group-btn">
+                                        <div class="btn btn-danger" ng-click="campaign.guidelines.splice($index, 1)"><i class="fa fa-remove"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="ibox-footer">
+                <button type="submit" form="editCampaignForm" class="btn btn-primary">Save</button>
+                <a ui-sref="app.campaigns" class="btn btn-default">Back</a>
+            </div>
+        </div>
+    </div>
+</div>

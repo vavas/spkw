@@ -1,0 +1,89 @@
+<div class="ibox float-e-margins" ng-controller="campaignViewApplyCtrl">
+    <div class="ibox-title">
+        <h5>Campaign Detail</h5>
+    </div>
+    <div class="ibox-content border-left-right">
+        <div class="col-md-10">
+           <h2>{{campaignDetail.title}}</h2>
+        </div>
+        <div class="col-md-2">
+            <i class="fa fa-{{campaignSocial}} fa-3x"></i>
+        </div>
+        <div class="col-md-12">
+            <h4>Application Deadline</h4>
+            <p>{{campaignDetail.application_deadline}}</p>
+            <h4>Post Approval Deadline</h4>
+            <p>{{campaignDetail.submission_deadline}}</p>
+            <h4>Details</h4>
+            <p>{{campaignDetail.details}}</p>
+            <h4>Guidelines</h4>
+            <ul>
+                <li ng-repeat="i in campaignDetail.guidelines">
+                    {{i.text}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Media Required</h4>
+            <ul>
+                <li>
+                    {{campaignDetail.media}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Mention</h4>
+            <ul>
+                <li ng-repeat="i in campaignDetail.mention.split(',')">
+                    {{i}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Compensation</h4>
+            <ul>
+                <li>
+                    {{campaignDetail.compensation}}
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-4">
+            <h4>Hashtag</h4>
+            <ul>
+                <li ng-repeat="i in campaignDetail.hashtag.split(',')">
+                    {{i}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>URL</h4>
+            <ul>
+                <li>
+                    {{campaignDetail.url}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Other compensation</h4>
+            <ul>
+                <li ng-if="campaignDetail.other_compensation">{{campaignDetail.other_compensation}}</li>
+                <li ng-if="!campaignDetail.other_compensation">None</li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-4">
+            <div class="btn btn-info" onclick="history.back()">Back</div>
+        </div>
+        <div class="col-md-4 text-center" ng-if="campaignStatusInf != 'invited'">
+            <div class="btn btn-info" ng-click="applyInfluencer()">Apply Now</div>
+        </div>
+
+        <div class="col-md-4 text-center" ng-if="campaignStatusInf == 'invited'">
+            <div class="btn btn-info" ng-click="acceptInvitation()">Accept Invitation</div>
+            <div class="btn btn-info" ng-click="rejectInvitation()">Reject Invitation</div>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="clearfix"></div>
+    </div>
+</div>

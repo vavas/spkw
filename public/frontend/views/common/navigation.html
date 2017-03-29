@@ -1,0 +1,67 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+
+                <!--<div class="dropdown profile-element" uib-dropdown>
+                    <img alt="image" class="img-circle" src="img/profile_small.jpg"/>
+                    <a class="dropdown-toggle" uib-dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold">{{loggedUser.first_name +' '+loggedUser.last_name}}</strong>
+                             </span>
+                                <span class="text-muted text-xs block text-capitalize">{{loggedUser.role}}<b class="caret"></b></span>
+                            </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a ng-click="logout()">Logout</a></li>
+                    </ul>
+                </div>-->
+                <div class="logo-element" ng-if="loggedUser.role != 'influencer'">
+                    <a href="#/app/dashboard/{{$scope.loggedUser.identity}}">
+                        <img class="img-responsive" src="img/logo-light.png">
+                    </a>
+                </div>
+                <div class="logo-element" ng-if="loggedUser.role == 'influencer'">
+                    <a href="#/app/dashboardInf/{{$scope.loggedUser.identity}}">
+                        <img class="img-responsive" src="img/logo-light.png">
+                    </a>
+                </div>
+            </li>
+
+            <li ng-repeat="item in menu" ng-class="{active: $state.includes(item.ui_ref)}" restrict-rules="item.permissions">
+                <a ng-if="item.external_ref" target="_blank" href="{{item.external_ref}}">
+                    <i ng-if="item.icon || item.icon != ''" class="fa {{item.icon}}"></i>
+                    <span class="nav-label">{{ item.title  }} </span>
+                </a>
+                <a ng-if="item.ui_ref" ui-sref="{{item.ui_ref+'({identity:\''+loggedUser.identity+'\'})'}}">
+                    <i ng-if="item.icon || item.icon != ''" class="fa {{item.icon}}"></i>
+                    <span class="nav-label">{{ item.title }}</span>
+
+                    <span ng-if="item.subItems" class="fa arrow"></span>
+                </a>
+                <ul ng-if="item.subItems" class="nav nav-second-level collapse" ng-class="{in: $state.includes(item.ui_ref)}">
+                    <li ng-class="{active: $state.includes(subItem.ui_ref)}" ng-repeat="subItem in item.subItems">
+                        <a ng-if="subItem.external_ref" target="_blank" href="{{subItem.external_ref}}">
+                            <i ng-if="subItem.icon || subItem.icon != ''" class="fa {{subItem.icon}}"></i>
+                            <span class="nav-label">{{ subItem.title }}</span>
+                        </a>
+                        <a ng-if="subItem.ui_ref" ui-sref="{{subItem.ui_ref+'({identity:\''+loggedUser.identity+'\'})'}}">
+                            <i ng-if="subItem.icon || subItem.icon != ''" class="fa {{subItem.icon}}"></i>
+                            <span class="nav-label">{{ subItem.title }}</span>
+                            <span ng-if="subItem.subItems" class="fa arrow"></span>
+                        </a>
+                        <!--<ul ng-if="subItem.subItems" class="nav nav-third-level collapse" ng-class="{in: $state.includes(subItem.ui_ref)}">-->
+                            <!--<li ng-class="{active: $state.includes(subSubItem.ui_ref)}" ng-repeat="subSubItem in subItem.subItems">-->
+                                <!--<a ui-sref="{{subSubItem.ui_wizard_step ? subSubItem.ui_ref + '.' + subSubItem.ui_wizard_step : subSubItem.ui_ref}}">-->
+                                    <!--<i ng-if="subSubItem.icon || subSubItem.icon != ''" class="fa {{subSubItem.icon}}"></i>-->
+                                    <!--<span class="nav-label"> {{ subSubItem.title }} </span>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

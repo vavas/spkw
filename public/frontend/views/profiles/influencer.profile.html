@@ -1,0 +1,266 @@
+<div class="ibox float-e-margins" ng-controller="profileCtrl">
+    <div class="ibox-title">
+        <h5>Profile Detail</h5>
+    </div>
+    <div class="ibox-content border-left-right">
+        <div class="row">
+            <div class="col-md-4">
+                <img alt="image" class="img-responsive img-thumbnail" src="{{loggedUser.image_url}}">
+            </div>
+            <div class="col-md-8">
+                <form name="editProfileForm" role="form" ng-submit="updateProfile()">
+                    <div class="form-group">
+                        <h3>Personal Information</h3>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3"><h4>Full Name: </h4></div>
+                            <div class="col-lg-10 col-md-9" ng-if="profileMode == 'view'">
+                                <h4>{{loggedUser.first_name +' '+ loggedUser.last_name}}</h4>
+                            </div>
+                            <div class="col-lg-10 col-md-8" ng-if="profileMode == 'edit'">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="first_name"
+                                               ng-model="loggedUser.first_name"
+                                               placeholder="First Name"
+                                               ng-class="{'server-error':editProfileForm.first_name.$error.serverError}"
+                                               ng-focus="editProfileForm.first_name.$error.serverError = false">
+                                        <p>{{editProfileForm.first_name.$error.errorMessage}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="last_name"
+                                               ng-model="loggedUser.last_name"
+                                               placeholder="Last Name"
+                                               ng-class="{'server-error':editProfileForm.last_name.$error.serverError}"
+                                               ng-focus="editProfileForm.last_name.$error.serverError = false">
+                                        <p>{{editProfileForm.last_name.$error.errorMessage}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3"><h4>Location: </h4></div>
+                            <div class="col-lg-10 col-md-9" ng-if="profileMode == 'view'">
+                                <h4>{{loggedUser.location_state + ', ' + loggedUser.location_city}}</h4>
+                            </div>
+                            <div class="col-lg-10 col-md-8" ng-if="profileMode == 'edit'">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="location_state"
+                                                ng-model="loggedUser.location_state"
+                                                placeholder="State"
+                                                ng-class="{'server-error':editProfileForm.location_state.$error.serverError}"
+                                                ng-focus="editProfileForm.location_state.$error.serverError = false"
+                                                ng-options="s as s for s in location_state">
+                                        </select>
+                                        <p>{{editProfileForm.location_state.$error.errorMessage}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="location_city"
+                                               ng-model="loggedUser.location_city"
+                                               placeholder="City"
+                                               ng-focus="editProfileForm.location_city.$error.serverError = false"
+                                               ng-class="{'server-error':editProfileForm.location_city.$error.serverError}">
+                                        <p>{{editProfileForm.location_city.$error.errorMessage}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3"><h4>Age and Gender: </h4></div>
+                            <div class="col-lg-10 col-md-9" ng-if="profileMode == 'view'">
+                                <h4>{{loggedUser.age +', '+ loggedUser.gender}}</h4>
+                            </div>
+                            <div class="col-lg-10 col-md-8" ng-if="profileMode == 'edit'">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="number" class="form-control" name="age"
+                                               ng-model="loggedUser.age"
+                                               placeholder="Age"
+                                               ng-focus="editProfileForm.age.$error.serverError = false"
+                                               ng-class="{'server-error':editProfileForm.age.$error.serverError}">
+                                        <p>{{editProfileForm.age.$error.errorMessage}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="gender"
+                                                ng-model="loggedUser.gender"
+                                                ng-focus="editProfileForm.gender.$error.serverError = false"
+                                                ng-class="{'server-error':editProfileForm.gender.$error.serverError}"
+                                                ng-options="g as g for g in genders">
+                                        </select>
+                                        <p>{{editProfileForm.gender.$error.errorMessage}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3"><h4>Interests: </h4></div>
+                            <div class="col-lg-10 col-md-9" ng-if="profileMode == 'view'">
+                                <span class="badge m-r-sm m-b-sm" ng-repeat="item in loggedUser.interests track by $index">{{item.interest_name}}</span>
+                            </div>
+                            <div class="col-lg-10 col-md-8" ng-if="profileMode == 'edit'">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select multiple chosen class="chosen-select form-control" name="interests"
+                                                ng-model="loggedUser.interests" ng-options="i as i.interest_name for i in interests track by i.identity"
+                                                ng-focus="editProfileForm.interests.$error.serverError = false"
+                                                ng-class="{'server-error':editProfileForm.interests.$error.serverError}">
+                                        </select>
+                                        <p>{{editProfileForm.interests.$error.errorMessage}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-content">
+                        <div class="user-button">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            ng-click="editProfile()"
+                                            ng-show="profileMode == 'view'">
+                                        <i class="fa fa-gear"></i> Edit Profile
+                                    </button>
+                                    <div ng-show="profileMode == 'edit'">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-check"></i> Save
+                                        </button>
+                                        <button type="button" class="btn btn-defaul btn-sm"
+                                                ng-click="cancelEditProfile()">
+                                            <i class="fa fa-cancel"></i> Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form name="changePasswordForm" role="form" ng-submit="updatePassword()">
+                    <h3>Password Control</h3>
+                    <div class="row" ng-show="passwordChanging">
+                        <div class="col-md-4">
+                            <input type="password" class="form-control" name="password_old"
+                                   placeholder="Old Password"
+                                   ng-model="passwordData.password_old"
+                                   ng-focus="changePasswordForm.password_old.$error.serverError = false"
+                                   ng-class="{'server-error':changePasswordForm.password_old.$error.serverError}">
+                            <p>{{changePasswordForm.password_old.$error.errorMessage}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="password" class="form-control" name="password"
+                                   placeholder="New Password"
+                                   ng-model="passwordData.password"
+                                   ng-focus="changePasswordForm.password.$error.serverError = false"
+                                   ng-class="{'server-error':changePasswordForm.password.$error.serverError}">
+                            <p>{{changePasswordForm.password.$error.errorMessage}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="password" class="form-control" name="password_confirmation"
+                                   placeholder="Confirm Password"
+                                   ng-model="passwordData.password_confirmation"
+                                   ng-focus="changePasswordForm.password_confirmation.$error.serverError = false"
+                                   ng-class="{'server-error':changePasswordForm.password_confirmation.$error.serverError}">
+                            <p>{{changePasswordForm.password_confirmation.$error.errorMessage}}</p>
+                        </div>
+                    </div>
+                    <div class="profile-content">
+                        <div class="user-button">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            ng-click="changePassword()"
+                                            ng-show="!passwordChanging">
+                                        <i class="fa fa-gear"></i> Change
+                                    </button>
+                                    <div ng-show="passwordChanging">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-check"></i> Save
+                                        </button>
+                                        <button type="button" class="btn btn-defaul btn-sm"
+                                                ng-click="cancelChangePassword()">
+                                            <i class="fa fa-cancel"></i> Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h4>Twitter</h4>
+            </div>
+            <div class="ibox-content">
+                <div class="widget-head-color-box navy-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <h2 class="font-bold no-margins">
+                            {{userSocialData.twitter_screen_name}}
+                        </h2>
+                    </div>
+                    <img src="{{userSocialData.twitter_image}}" class="img-circle circle-border m-b-md socialImageProfile" alt="profile">
+
+                    <div>
+                        <span>{{userSocialData.twitter_followers}} Followers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h4>Instagram</h4>
+            </div>
+            <div class="ibox-content">
+                <div class="widget-head-color-box navy-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <h2 class="font-bold no-margins">
+                            {{userSocialData.instagram_name}}
+                        </h2>
+                    </div>
+                    <img src="{{userSocialData.instagram_image}}" class="img-circle circle-border m-b-md socialImageProfile" alt="profile">
+
+                    <div>
+                        <span>{{userSocialData.instagram_followers}} Followers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h4>YouTube</h4>
+            </div>
+            <div class="ibox-content">
+                <div class="widget-head-color-box navy-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <h2 class="font-bold no-margins">
+                            {{userSocialData.youtube_name}}
+                        </h2>
+                    </div>
+                    <img src="{{userSocialData.youtube_image}}" class="img-circle circle-border m-b-md socialImageProfile" alt="profile">
+
+                    <div>
+                        <span>{{userSocialData.youtube_views}} Views</span> |
+                        <span>{{userSocialData.youtube_subscribers}} Subscribers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

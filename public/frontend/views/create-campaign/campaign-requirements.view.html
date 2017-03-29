@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="ibox m-t-lg">
+            <div class="ibox-title">
+                <h5>Step Three: Requirements</h5>
+            </div>
+            <form class="ibox-content" role="form" id="campaignRequirementsForm" name="campaignRequirementsForm" ng-submit="next('campaign.create.step-four', campaignRequirementsForm)">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Hash Tags</label>
+                            <select multiple chosen class="chosen-select form-control" name="hash_tags"
+                                    ng-model="campaign.hash_tags" ng-options="ht as ht for ht in hashTags">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Mentions</label>
+                            <select multiple chosen class="chosen-select form-control" name="mentions"
+                                    ng-model="campaign.mentions" ng-options="m as m for m in mentions">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>URL</label>
+                            <input type="text" name="url" class="form-control" placeholder="Url goes here"
+                                   ng-model="campaign.url">
+                        </div>
+                        <div class="form-group">
+                            <label>Media</label>
+                            <select name="media" class="form-control"
+                                    ng-model="campaign.media"
+                                    required
+                                    ng-options="m as m for m in campaignMedia" >
+                            </select>
+                            <p ng-show="campaignRequirementsForm.media.$error.required && (campaignRequirementsForm.$submitted || campaignRequirementsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Condition</label>
+                            <select class="chosen-select form-control" name="condition"
+                                    required
+                                    ng-model="campaign.condition" ng-options="c as c for c in conditions">
+                            </select>
+                            <p ng-show="campaignRequirementsForm.condition.$error.required && (campaignRequirementsForm.$submitted || campaignRequirementsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Disclosure</label>
+                            <select class="chosen-select form-control" name="disclosure"
+                                    required
+                                    ng-model="campaign.disclosure" ng-options="s as s for s in disclosures">
+                            </select>
+                            <p ng-show="campaignRequirementsForm.disclosure.$error.required && (campaignRequirementsForm.$submitted || campaignRequirementsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <p ng-show="campaignRequirementsForm.guidelines.$error.required && (campaignRequirementsForm.$submitted || campaignRequirementsForm.title.$touched)" class="text-danger">
+                            {{'Required'}}
+                        </p>
+                        <label>Guidelines</label>
+                        <a class="pull-right" ng-click="campaign.guidelines.push({text:''})">
+                            <i class="fa fa-plus-circle"></i>
+                            <strong class="text-success">Add Guideline</strong>
+                        </a>
+                        <div class="form-group" ng-repeat="guide in campaign.guidelines track by $index">
+                            <div class="input-group">
+                                <input type="text" name="guidelines" required class="form-control" placeholder="{{'Guideline ' +($index+1)}}"
+                                       ng-model="guide.text">
+                                <div class="input-group-btn">
+                                    <div class="btn btn-danger" ng-click="campaign.guidelines.splice($index, 1)"><i class="fa fa-remove"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+            <div class="ibox-footer">
+                <a ui-sref="campaign.create.step-two" class="btn btn-default">Back</a>
+                <button type="submit" form="campaignRequirementsForm" class="btn btn-primary">Next</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+</div>

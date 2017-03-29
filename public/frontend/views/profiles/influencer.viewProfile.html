@@ -1,0 +1,155 @@
+<div class="ibox float-e-margins" ng-controller="profileCtrl">
+    <div class="ibox-title">
+        <h5>Profile Detail</h5>
+    </div>
+    <div class="ibox-content border-left-right">
+        <div class="row">
+            <div class="col-md-4">
+                <img alt="image" class="img-responsive img-thumbnail" src="{{userShow.image_url}}">
+            </div>
+            <div class="col-md-8">
+                <form name="editProfileForm" role="form">
+                    <div class="form-group">
+                        <h3>Personal Information</h3>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3"><h4>Full Name: </h4></div>
+                            <div class="col-lg-10 col-md-9">
+                                <h4>{{userShow.first_name +' '+ userShow.last_name}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3"><h4>Location: </h4></div>
+                            <div class="col-lg-10 col-md-9">
+                                <h4>{{userShow.location_state + ' ' + userShow.location_city}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3"><h4>Age and Gender: </h4></div>
+                            <div class="col-lg-10 col-md-9">
+                                <h4>{{userShow.age +', '+ userShow.gender}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3"><h4>Interests: </h4></div>
+                            <div class="col-lg-10 col-md-9">
+                                <span class="badge m-r-sm m-b-sm" ng-repeat="item in userShow.interests track by $index">{{item.interest_name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h4>Twitter</h4>
+            </div>
+            <div class="ibox-content">
+                <div class="widget-head-color-box navy-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <h2 class="font-bold no-margins">
+                            {{userSocialData.twitter_screen_name}}
+                        </h2>
+                        <!--<small>Founder of Groupeq</small>-->
+                    </div>
+                    <img src="{{userSocialData.twitter_image}}" class="img-circle circle-border m-b-md socialImageProfile" alt="profile">
+
+                    <div>
+                        <!--<span>100 Tweets</span> |-->
+                        <!--<span>{{userSocialData.twitter_followers}} Following</span> |-->
+                        <span>{{userSocialData.twitter_followers}} Followers</span>
+                    </div>
+                </div>
+                <!--<div class="widget-text-box">
+                    <h4 class="media-heading">Alex Smith</h4>
+
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+                    <div class="text-right">
+                        <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
+                        <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h4>Instagram</h4>
+            </div>
+            <div class="ibox-content">
+                <div class="widget-head-color-box navy-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <h2 class="font-bold no-margins">
+                            {{userSocialData.instagram_name}}
+                        </h2>
+                        <!--<small>Founder of Groupeq</small>-->
+                    </div>
+                    <img src="{{userSocialData.instagram_image}}" class="img-circle circle-border m-b-md socialImageProfile" alt="profile">
+
+                    <div>
+                        <!--<span>100 Tweets</span> |
+                        <span>350 Following</span> |-->
+                        <span>{{userSocialData.instagram_followers}} Followers</span>
+                    </div>
+                </div>
+                <!--<div class="widget-text-box">
+                    <h4 class="media-heading">Alex Smith</h4>
+
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+                    <div class="text-right">
+                        <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
+                        <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h4>YouTube</h4>
+            </div>
+            <div class="ibox-content">
+                <div class="widget-head-color-box navy-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <h2 class="font-bold no-margins">
+                            {{userSocialData.youtube_name}}
+                        </h2>
+                        <!--<small>Founder of Groupeq</small>-->
+                    </div>
+                    <img src="{{userSocialData.youtube_image}}" class="img-circle circle-border m-b-md socialImageProfile" alt="profile">
+
+                    <div>
+                        <!--<span>100 Tweets</span> |-->
+                        <span>{{userSocialData.youtube_views}} Views</span> |
+                        <span>{{userSocialData.youtube_subscribers}} Subscribers</span>
+                    </div>
+                </div>
+                <!--<div class="widget-text-box">
+                    <h4 class="media-heading">Alex Smith</h4>
+
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+                    <div class="text-right">
+                        <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
+                        <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>

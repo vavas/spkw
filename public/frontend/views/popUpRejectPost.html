@@ -1,0 +1,13 @@
+
+<div>
+    <h2 class="inviteHeader" ng-bind-html="ngDialogData.title"></h2>
+    <h2>Message</h2>
+    <textarea class="form-control"
+              ng-model="$parent.rejectTextModel"
+              id="exampleTextarea"
+              rows="3"
+              placeholder="The Brand can add a custom message to send to the Influencer to explain why their Post was rejected."></textarea>
+    <div class="popUpBtnsGroup">
+       <button type="submit" class="btn btn-primary" ng-click="closeThisDialog('confirm')">Reject</button>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="ibox m-t-lg">
+            <div class="ibox-title">
+                <h2>Step One: Choose a Platform</h2>
+            </div>
+            <form class="ibox-content" name="selectPlatformForm" id="selectPlatformForm" ng-submit="next('campaign.create.step-two', selectPlatformForm)">
+                <div class="row m-t-lg">
+                    <div class="col-md-3 text-center">
+                        <label class="social-item"  ng-class="{'active':campaign.social_network == 'twitter'}">
+                            <i class="fa fa-twitter-square fa-16x"></i>
+                            <input type="radio" class="hidden" name="platforms" value="twitter" ng-model="campaign.social_network">
+                            <i class="fa fa-check fa-2x"></i>
+                        </label>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <label class="social-item" ng-class="{'active':campaign.social_network == 'vine'}">
+                            <i class="fa fa-vine fa-16x"></i>
+                            <input type="radio" class="hidden" name="platforms" value="vine" ng-model="campaign.social_network">
+                            <i class="fa fa-check fa-2x"></i>
+                        </label>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <label class="social-item" ng-class="{'active':campaign.social_network == 'instagram'}">
+                            <i class="fa fa-instagram fa-16x"></i>
+                            <input type="radio" class="hidden" name="platforms" value="instagram" ng-model="campaign.social_network">
+                            <i class="fa fa-check fa-2x" ></i>
+                        </label>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <label class="social-item" ng-class="{'active':campaign.social_network == 'youtube'}">
+                            <i class="fa fa-youtube-square fa-16x"></i>
+                            <input type="radio" class="hidden" name="platforms" value="youtube" ng-model="campaign.social_network">
+                            <i class="fa fa-check fa-2x" ></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="row m-t-lg">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Minimum Influencer Reach</label>
+                            <input type="number" min="0" class="form-control" name="minimum_reach" ng-model="campaign.minimum_reach" required>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="ibox-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" form="selectPlatformForm" class="btn btn-primary">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="ibox float-e-margins" ng-controller="profileCtrl">
+    <div class="ibox-title">
+        <h5>Profile Detail</h5>
+    </div>
+    <div class="ibox-content border-left-right">
+        <div class="row">
+            <div class="col-md-12">
+                <form name="changePasswordForm" role="form" ng-submit="updatePassword()">
+                    <h3>Password Control</h3>
+                    <div class="row" ng-show="passwordChanging">
+                        <div class="col-md-4">
+                            <input type="password" class="form-control" name="password_old"
+                                   placeholder="Old Password"
+                                   ng-model="passwordData.password_old"
+                                   ng-focus="changePasswordForm.password_old.$error.serverError = false"
+                                   ng-class="{'server-error':changePasswordForm.password_old.$error.serverError}">
+                            <p>{{changePasswordForm.password_old.$error.errorMessage}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="password" class="form-control" name="password"
+                                   placeholder="New Password"
+                                   ng-model="passwordData.password"
+                                   ng-focus="changePasswordForm.password.$error.serverError = false"
+                                   ng-class="{'server-error':changePasswordForm.password.$error.serverError}">
+                            <p>{{changePasswordForm.password.$error.errorMessage}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="password" class="form-control" name="password_confirmation"
+                                   placeholder="Confirm Password"
+                                   ng-model="passwordData.password_confirmation"
+                                   ng-focus="changePasswordForm.password_confirmation.$error.serverError = false"
+                                   ng-class="{'server-error':changePasswordForm.password_confirmation.$error.serverError}">
+                            <p>{{changePasswordForm.password_confirmation.$error.errorMessage}}</p>
+                        </div>
+                    </div>
+                    <div class="profile-content">
+                        <div class="user-button">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            ng-click="changePassword()"
+                                            ng-show="!passwordChanging">
+                                        <i class="fa fa-gear"></i> Change
+                                    </button>
+                                    <div ng-show="passwordChanging">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-check"></i> Save
+                                        </button>
+                                        <button type="button" class="btn btn-defaul btn-sm"
+                                                ng-click="cancelChangePassword()">
+                                            <i class="fa fa-cancel"></i> Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

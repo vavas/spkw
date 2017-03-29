@@ -1,0 +1,132 @@
+<div class="ibox float-e-margins" ng-controller="campaignPostCtrl">
+    <div class="col-md-12">
+        <div class="ibox-title">
+            <div class="col-md-10"><h2>{{campaignDetailManange.title}}</h2></div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li ng-class="{ active: isSet(1) }"><a href ng-click="setTab(1)">New Posts</a></li>
+                <li ng-class="{ active: isSet(2) }"><a href ng-click="setTab(2)">Approved</a></li>
+                <li ng-class="{ active: isSet(3) }"><a href ng-click="setTab(3)">Rejected</a></li>
+            </ul>
+            <div class="tab-content">
+                <div ng-show="isSet(1)">
+                    <div class="panel-body">
+                        <div class="campaignManage" ng-repeat="post in posts.content | filter: { status: 'created' }">
+                            <div class="ibox-content border-left-right">
+                                <div class="col-md-2">
+                                    <div class="widget text-center">
+                                        <img alt="image" class="m-t-xs img-responsive inline" src="{{post.image_url}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-9">
+                                        <h5 ng-if="campaignDetailManange.social_network == 'Twitter'">
+                                            @{{post.influencerInf.twitter_screen_name}}
+                                        </h5>
+                                        <h5 ng-if="campaignDetailManange.social_network == 'YouTube'">
+                                            @{{post.influencerInf.youtube_name}}
+                                        </h5>
+                                        <h5 ng-if="campaignDetailManange.social_network == 'Instagram'">
+                                            @{{post.influencerInf.instagram_name}}
+                                        </h5>
+                                        <h5 ng-if="post.reject_reason">Reject reason:</h5>
+                                        <p ng-if="post.reject_reason">{{post.reject_reason}}</p>
+                                        <p>{{post.text}}</p>
+                                        <div ng-if="post.video_url"><a href="{{post.video_url}}" target="_blank">Video</a></div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="dropdown" uib-dropdown>
+                                            <div class="dropdown-toggle btn btn-info" uib-dropdown-toggle> Action <span class="caret"></span></div>
+                                            <ul role="menu" class="dropdown-menu">
+                                                <li>
+                                                    <a ng-click="acceptPost(post.identity)">Approve Post</a>
+                                                </li>
+                                                <li>
+                                                    <a ng-click="rejectPost(post.identity)">Reject Post</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div ng-show="isSet(2)">
+                    <div class="panel-body">
+                        <div class="campaignManage" ng-repeat="post in posts.content | filter: { status: 'approved' }">
+                            <div class="ibox-content border-left-right">
+                                <div class="col-md-2">
+                                    <div class="widget text-center">
+                                        <img alt="image" class="m-t-xs img-responsive inline" src="{{post.image_url}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-9">
+                                        <h5 ng-if="campaignDetailManange.social_network == 'Twitter'">
+                                            @{{post.influencerInf.twitter_screen_name}}
+                                        </h5>
+                                        <h5 ng-if="campaignDetailManange.social_network == 'YouTube'">
+                                            @{{post.influencerInf.youtube_name}}
+                                        </h5>
+                                        <h5 ng-if="campaignDetailManange.social_network == 'Instagram'">
+                                            @{{post.influencerInf.instagram_name}}
+                                        </h5>
+                                        <p>{{post.text}}</p>
+                                        <div ng-if="post.video_url"><a href="{{post.video_url}}" target="_blank">Video</a></div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <div>
+                                            <a ng-click="schedulePost(post.identity)"><div class="btn btn-info"> Schedule Post </div></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="isSet(3)">
+                <div class="panel-body">
+                    <div class="campaignManage" ng-repeat="post in posts.content | filter: { status: 'rejected' }">
+                        <div class="ibox-content border-left-right">
+                            <div class="col-md-2">
+                                <div class="widget text-center">
+                                    <img alt="image" class="m-t-xs img-responsive inline" src="{{post.image_url}}">
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="col-md-9">
+                                    <h5 ng-if="campaignDetailManange.social_network == 'Twitter'">
+                                        @{{post.influencerInf.twitter_screen_name}}
+                                    </h5>
+                                    <h5 ng-if="campaignDetailManange.social_network == 'YouTube'">
+                                        @{{post.influencerInf.youtube_name}}
+                                    </h5>
+                                    <h5 ng-if="campaignDetailManange.social_network == 'Instagram'">
+                                        @{{post.influencerInf.instagram_name}}
+                                    </h5>
+                                    <h5 ng-if="post.reject_reason">Reject reason:</h5>
+                                    <p ng-if="post.reject_reason">{{post.reject_reason}}</p>
+                                    <h5>Post text:</h5>
+                                    <p>{{post.text}}</p>
+                                    <div ng-if="post.video_url"><a href="{{post.video_url}}" target="_blank">Video</a></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+</div>
+    </div>
+</div>

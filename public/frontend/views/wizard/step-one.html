@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset class="ibox m-t-lg">
+                <div class="ibox-title">
+                    <h2>Select Networks</h2>
+                </div>
+                <div class="ibox-content">
+                    <h2>Hello, {{user.first_name +' '+ user.last_name}}</h2>
+                    <p class="text-muted m-t-lg">
+                        To qualify for advertising opportunities you'll need to verify ownership of at least one social media account. We'll analyze your followers and determine which marketing opportunities are right for you.
+                    </p>
+                    <div class="row m-t-lg">
+                        <div class="col-md-4 text-center">
+                            <label class="social-item"  ng-class="{'active':user.media.socials.indexOf('twitter') != -1}" ng-click="auth('twitter')">
+                                <i class="fa fa-twitter-square fa-16x"></i>
+                                <i class="fa fa-check fa-2x"></i>
+                            </label>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <label class="social-item" ng-class="{'active':user.media.socials.indexOf('instagram') != -1}" ng-click="auth('instagram')">
+                                <i class="fa fa-instagram fa-16x"></i>
+                                <i class="fa fa-check fa-2x" ></i>
+                            </label>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <label class="social-item" ng-class="{'active':user.media.socials.indexOf('google') != -1}" ng-click="auth('google')">
+                                <i class="fa fa-youtube-square fa-16x"></i>
+                                <i class="fa fa-check fa-2x" ></i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row m-t-lg">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                <strong>Heads up!</strong> Connecting your social accounts helps brand advertisers determine which marketing jobs are right for you. We will never post anything without your permission.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-footer">
+                    <div class="row">
+                        <div class="col-md-offset-10 col-md-2">
+                            <div ng-click="next('onboard.step-two')" class="btn btn-primary btn-block">Next</div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

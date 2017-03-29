@@ -1,0 +1,141 @@
+<div class="ibox float-e-margins" ng-controller="influencerPostCtrl">
+    <div class="ibox-title">
+        <h5>Campaign Detail</h5>
+    </div>
+    <div class="ibox-content border-left-right">
+        <div class="col-md-10">
+            <h2>{{campaignDetail.title}}</h2>
+        </div>
+        <div class="col-md-2">
+            <i class="fa fa-{{campaignSocial}} fa-3x"></i>
+        </div>
+        <div class="col-md-12">
+            <h4>Application Deadline</h4>
+            <p>{{campaignDetail.application_deadline}}</p>
+            <h4>Post Approval Deadline</h4>
+            <p>{{campaignDetail.submission_deadline}}</p>
+            <h4>Details</h4>
+            <p>{{campaignDetail.details}}</p>
+            <h4>Guidelines</h4>
+            <ul>
+                <li ng-repeat="i in campaignDetail.guidelines">
+                    {{i.text}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Media Required</h4>
+            <ul>
+                <li>
+                    {{campaignDetail.media}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Mention</h4>
+            <ul>
+                <li ng-repeat="i in campaignDetail.mention.split(',')">
+                    {{i}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Compensation</h4>
+            <ul>
+                <li>
+                    {{campaignDetail.compensation}}
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-4">
+            <h4>Hashtag</h4>
+            <ul>
+                <li ng-repeat="i in campaignDetail.hashtag.split(',')">
+                    {{i}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>URL</h4>
+            <ul>
+                <li>
+                    {{campaignDetail.url}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Other compensation</h4>
+            <ul>
+                <li ng-if="campaignDetail.other_compensation">{{campaignDetail.other_compensation}}</li>
+                <li ng-if="!campaignDetail.other_compensation">None</li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <!--<div class="col-md-4">
+            <div class="btn btn-info" onclick="history.back()">Back</div>
+        </div>-->
+        <div class="col-md-4"></div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="ibox-content border-left-right">
+        <div class="ibox-title">
+            <div class="col-md-12">
+                <h2>Post</h2>
+                <div class="form-group">
+                    <textarea ng-model="postText" class="form-control" rows="5" ng-change="textValidationPost()"></textarea>
+                    <p>
+                        <span class="text-danger"
+                              ng-repeat="i in textRequiredHashtags">
+                              {{i}}
+                        </span>
+                        <span class="text-danger"
+                              ng-repeat="i in textRequiredMentions">
+                              {{i}}
+                        </span>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group col-md-6">
+                        <div class="btn btn-default btn-block"
+                             ngf-select="uploadImg($file)"
+                             ng-model="file"
+                             name="file"
+                             ngf-pattern="'image/*'"
+                             ngf-accept="'image/*'" ngf-max-size="20MB">
+                            Select Image</div>
+                        <input type="text" name="image_url" class="hidden"
+                               ng-model="post.image"
+                               ng-focus="editBrandForm.image_url.$error.serverError = false" >
+                        <div ng-show="uploadingImg" class="m-t-md">
+                            <uib-progressbar value="progressPercentage" type="success" class="progress-striped active"></uib-progressbar>
+                        </div>
+                        <img alt="image" ng-show="uploadedImg" class="img-responsive img-thumbnail" src="{{postItem.image_url}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="btn btn-default btn-block"
+                             ngf-select="uploadVideo($file)"
+                             ng-model="file"
+                             name="file"
+                             ngf-pattern="'video/*'"
+                             ngf-accept="'video/*'" ngf-max-size="20MB">
+                             Select Video</div>
+
+                        <input type="text" name="image_url" class="hidden"
+                               ng-model="post.video"
+                               ng-focus="editBrandForm.video_url.$error.serverError = false" >
+                        <div ng-show="uploadingVideo" class="m-t-md">
+                            <uib-progressbar value="progressPercentage" type="success" class="progress-striped active"></uib-progressbar>
+                        </div>
+                        <div ng-show="uploadedVideo">Video uploaded</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="btn btn-info" ng-click="createPost()">Submit Post</div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

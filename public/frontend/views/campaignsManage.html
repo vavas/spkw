@@ -1,0 +1,73 @@
+<div class="ibox float-e-margins">
+    <div class="col-md-12">
+        <div class="ibox-title">
+            <div class="col-md-10"><h2>Manage campaigns</h2></div>
+            <div class="col-md-2"><a href="#/app/campaigns/create"><button class="btn btn-default btn-add-item">Create Campaign</button></a></div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-md-12 campaignManage" ng-repeat="campaign in campaignDetailManange">
+        <div class="ibox-content border-left-right">
+            <div class="col-md-8">
+                <h2>{{campaign.title}}</h2>
+            </div>
+            <div class="col-md-4 text-right" ng-if="campaign.type == 'public'">
+                <span class="label label-dark">{{campaign.type}}</span>
+            </div>
+            <div class="col-md-4 text-right" ng-if="campaign.type == 'private'">
+                <span class="label label-danger">{{campaign.type}}</span>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-2">
+                <i class="fa fa-{{campaign.social_network | lowercase}} fa-3x"></i>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#/app/campaign/{{campaign.identity}}">
+                    <h2>{{campaign.influencers_to_review}}</h2>
+                </a>
+                <p>Influencers to Review</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#/app/campaigns/post/{{campaign.identity}}">
+                    <h2>{{campaign.posts_to_review}}</h2>
+                </a>
+                <p>Posts to Review</p>
+            </div>
+            <div class="col-md-2">
+                <div class="dropdown" uib-dropdown>
+                    <div class="dropdown-toggle btn btn-info" uib-dropdown-toggle> Action <span class="caret"></span></div>
+                    <ul role="menu" class="dropdown-menu" ng-if="campaign.type == 'public'">
+                        <li>
+                            <a href="#/app/campaign/{{campaign.identity}}">View Campaign</a>
+                        </li>
+                        <li>
+                            <a href="#/influencers/search">Invite influencers</a>
+                        </li>
+                        <li>
+                            <a href="#/app/campaigns/post/{{campaign.identity}}">Review posts</a>
+                        </li>
+                        <li>
+                            <a>Pause Campaign</a>
+                        </li>
+                        <li>
+                            <a href="#/app/campaign/{{campaign.identity}}">View Applicants</a>
+                        </li>
+                    </ul>
+                    <ul role="menu" class="dropdown-menu" ng-if="campaign.type == 'private'">
+                        <li>
+                            <a href="#/app/campaign/{{campaign.identity}}">View Campaign</a>
+                        </li>
+                        <li>
+                            <a href="#/influencers/search">Invite influencers</a>
+                        </li>
+                        <li>
+                            <a href="#/app/campaigns/post/{{campaign.identity}}">Review posts</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,134 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="ibox m-t-lg">
+            <div class="ibox-title">
+                <h5>Step Two: Details</h5>
+            </div>
+            <form class="ibox-content" role="form" id="editCampaignForm" name="editCampaignForm" ng-submit="next('campaign.create.step-three', editCampaignForm)">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" name="title" class="form-control" placeholder="Title" required
+                                   ng-model="campaign.title">
+                            <p ng-show="campaignDetailsForm.title.$error.required && (campaignDetailsForm.$submitted || campaignDetailsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>$ Compensation</label>
+                            <input type="number" min="0" name="compensation" class="form-control" placeholder="$ Compensation" required
+                                   ng-model="campaign.compensation">
+                            <p ng-show="campaignDetailsForm.compensation.$error.required && (campaignDetailsForm.$submitted || campaignDetailsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Other Compensation</label>
+                            <input type="text" name="other_compensation" class="form-control" placeholder="Other Compensation" required
+                                   ng-model="campaign.other_compensation">
+                            <p ng-show="campaignDetailsForm.other_compensation.$error.required && (campaignDetailsForm.$submitted || campaignDetailsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Interests</label>
+                            <select multiple chosen class="chosen-select form-control" name="interests"
+                                    ng-model="campaign.interests" ng-options="i as i for i in interests"
+                                    ng-focus="campaignDetailsForm.interests.$error.serverError = false">
+                            </select>
+                            <p ng-show="campaignDetailsForm.interests.$error.required && (campaignDetailsForm.$submitted || campaignDetailsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Type</label>
+                            <div class="form-control">
+                                <label>
+                                    <input type="radio" name="type"
+                                           ng-model="campaign.type"
+                                           value="public">
+                                    Public
+                                </label>
+                                <label>
+                                    <input type="radio" name="type"
+                                           ng-model="campaign.type"
+                                           value="private">
+                                    Private <small>(Invite Only)</small>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Submission Deadline</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control"
+                                       required
+                                       uib-datepicker-popup
+                                       ng-model="campaign.submission_deadline" is-open="submissionDeadline" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="submissionDeadline = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                            </p>
+                            <p ng-show="campaignDetailsForm.submission_deadline.$error.required && (campaignDetailsForm.$submitted || campaignDetailsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+                        <div class="form-group" ng-if="campaign.type == 'public'">
+                            <label>Application Deadline</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control"
+                                       required
+                                       uib-datepicker-popup ng-model="campaign.application_deadline" is-open="applicationDeadline" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="applicationDeadline = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                            </p>
+                            <p ng-show="campaignDetailsForm.application_deadline.$error.required && (campaignDetailsForm.$submitted || campaignDetailsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Posting Date</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control"
+                                       name="posting_date"
+                                       required
+                                       uib-datepicker-popup ng-model="campaign.posting_date" is-open="postingDate" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="postingDate = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                            </p>
+                            <p ng-show="campaignDetailsForm.posting_date.$error.required && (campaignDetailsForm.$submitted || campaignDetailsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Details</label>
+                            <textarea name="details" class="form-control" rows="3" placeholder="Give some brief details about the campaign." required
+                                      ng-model="campaign.details">
+                            </textarea>
+                            <p ng-show="campaignDetailsForm.details.$error.required && (campaignDetailsForm.$submitted || campaignDetailsForm.title.$touched)" class="text-danger">
+                                {{'Required'}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="ibox-footer">
+                <a ui-sref="campaign.create.step-one" class="btn btn-default">Back</a>
+                <button type="submit" form="editCampaignForm" class="btn btn-primary">Next</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+</div>

@@ -1,0 +1,298 @@
+<div class="ibox float-e-margins" ng-controller="campaignViewCtrl">
+    <div class="ibox-title">
+        <h5>Campaign Detail</h5>
+    </div>
+    <div class="ibox-content border-left-right">
+        <div class="ibox-content border-left-right">
+        <div class="col-md-10">
+            <h2>{{campaignDetail.title}}</h2>
+            <div ng-if="campaignDetail.type == 'public'">
+                <span class="label label-dark">{{campaignDetail.type}}</span>
+            </div>
+            <div ng-if="campaignDetail.type == 'private'">
+                <span class="label label-danger">{{campaignDetail.type}}</span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <i class="fa fa-{{campaignSocial}} fa-3x"></i>
+        </div>
+        <div class="col-md-12">
+            <h4>Application Deadline</h4>
+            <p>{{campaignDetail.application_deadline}}</p>
+            <h4>Post Approval Deadline</h4>
+            <p>{{campaignDetail.submission_deadline}}</p>
+            <h4>Details</h4>
+            <p>{{campaignDetail.details}}</p>
+            <h4>Guidelines</h4>
+            <ul>
+                <li ng-repeat="i in campaignDetail.guidelines">
+                    {{i.text}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Media Required</h4>
+            <ul>
+                <li>
+                    {{campaignDetail.media}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Mention</h4>
+            <ul>
+                <li ng-repeat="i in campaignDetail.mention.split(',')">
+                    {{i}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Compensation</h4>
+            <ul>
+                <li>
+                    {{campaignDetail.compensation}}
+                </li>
+            </ul>
+        </div>
+            <div class="clearfix"></div>
+        <div class="col-md-4">
+            <h4>Hashtag</h4>
+            <ul>
+                <li ng-repeat="i in campaignDetail.hashtag.split(',')">
+                    {{i}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>URL</h4>
+            <ul>
+                <li>
+                    {{campaignDetail.url}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Other compensation</h4>
+            <ul>
+                <li ng-if="campaignDetail.other_compensation">{{campaignDetail.other_compensation}}</li>
+                <li ng-if="!campaignDetail.other_compensation">None</li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+    </div>
+    </div>
+    <div class="ibox-title">
+        <h5>Influencers</h5>
+    </div>
+
+    <div class="tabs-container">
+        <ul class="nav nav-tabs">
+            <li ng-class="{ active: isSet(1) }"><a href ng-click="setTab(1)">Pending Review</a></li>
+            <li ng-class="{ active: isSet(2) }"><a href ng-click="setTab(2)">Accepted</a></li>
+            <li ng-class="{ active: isSet(3) }"><a href ng-click="setTab(3)">Declined</a></li>
+        </ul>
+        <div class="tab-content">
+            <div ng-show="isSet(1)">
+                <div class="panel-body">
+                    <div class="campaignManage" ng-repeat="influencer in campaignInfluencers | filter: { status: 'applied' }">
+                        <div class="ibox-content border-left-right">
+                            <div class="col-md-2">
+                                <div class="widget text-center">
+                                    <h5>{{influencer.first_name}} {{influencer.last_name}}</h5>
+                                    <img alt="image" class="img-circle m-t-xs img-responsive inline" src="{{influencer.twitter_image}}">
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <div class="widget text-center">
+                                        <div class="m-b-md">
+                                            <i class="fa fa-twitter fa-4x"></i>
+                                            <h1>{{influencer.twitter_followers}}</h1>
+                                            <h3 class="font-bold no-margins">Followers</h3>
+                                            <h3 class="m-xs">{{influencer.twitter_screen_name}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <div class="widget text-center">
+                                        <div class="m-b-md">
+                                            <i class="fa fa-youtube fa-4x"></i>
+                                            <h1>{{influencer.youtube_subscribers}}</h1>
+                                            <h3 class="font-bold no-margins">Subscribers</h3>
+                                            <h3 class="m-xs">{{influencer.youtube_name}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <div class="widget text-center">
+                                        <div class="m-b-md">
+                                            <i class="fa fa-instagram fa-4x"></i>
+                                            <h1>{{influencer.instagram_followers}}</h1>
+                                            <h3 class="font-bold no-margins">Followers</h3>
+                                            <h3 class="m-xs">{{influencer.instagram_name}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <div class="dropdown" uib-dropdown>
+                                        <div class="dropdown-toggle btn btn-info" uib-dropdown-toggle> Action <span class="caret"></span></div>
+                                        <ul role="menu" class="dropdown-menu">
+                                            <li>
+                                                <a ng-click="acceptToCampaign(influencer.invite_identity)">Accept</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="rejectToCampaign(influencer.invite_identity)">Decline</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div ng-show="isSet(2)">
+                <div class="panel-body">
+                <div class="campaignManage" ng-repeat="influencer in campaignInfluencers | filter: { status: 'application accepted'}">
+                    <div class="ibox-content border-left-right">
+                        <div class="col-md-2">
+                            <div class="widget text-center">
+                                <h5>{{influencer.first_name}} {{influencer.last_name}}</h5>
+                                <img alt="image" class="img-circle m-t-xs img-responsive inline" src="{{influencer.twitter_image}}">
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="widget text-center">
+                                    <div class="m-b-md">
+                                        <i class="fa fa-twitter fa-4x"></i>
+                                        <h1>{{influencer.twitter_followers}}</h1>
+                                        <h3 class="font-bold no-margins">Followers</h3>
+                                        <h3 class="m-xs">{{influencer.twitter_screen_name}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="widget text-center">
+                                    <div class="m-b-md">
+                                        <i class="fa fa-youtube fa-4x"></i>
+                                        <h1>{{influencer.youtube_subscribers}}</h1>
+                                        <h3 class="font-bold no-margins">Subscribers</h3>
+                                        <h3 class="m-xs">{{influencer.youtube_name}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="widget text-center">
+                                    <div class="m-b-md">
+                                        <i class="fa fa-instagram fa-4x"></i>
+                                        <h1>{{influencer.instagram_followers}}</h1>
+                                        <h3 class="font-bold no-margins">Followers</h3>
+                                        <h3 class="m-xs">{{influencer.instagram_name}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                    <div class="campaignManage" ng-repeat="influencer in campaignInfluencers | filter: { status: 'invited' }">
+                        <div class="ibox-content border-left-right">
+                            <div class="col-md-2">
+                                <div class="widget text-center">
+                                    <h5>{{influencer.first_name}} {{influencer.last_name}}</h5>
+                                    <img alt="image" class="img-circle m-t-xs img-responsive inline" src="{{influencer.twitter_image}}">
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <div class="widget text-center">
+                                        <div class="m-b-md">
+                                            <i class="fa fa-twitter fa-4x"></i>
+                                            <h1>{{influencer.twitter_followers}}</h1>
+                                            <h3 class="font-bold no-margins">Followers</h3>
+                                            <h3 class="m-xs">{{influencer.twitter_screen_name}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <div class="widget text-center">
+                                        <div class="m-b-md">
+                                            <i class="fa fa-youtube fa-4x"></i>
+                                            <h1>{{influencer.youtube_subscribers}}</h1>
+                                            <h3 class="font-bold no-margins">Subscribers</h3>
+                                            <h3 class="m-xs">{{influencer.youtube_name}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <div class="widget text-center">
+                                        <div class="m-b-md">
+                                            <i class="fa fa-instagram fa-4x"></i>
+                                            <h1>{{influencer.instagram_followers}}</h1>
+                                            <h3 class="font-bold no-margins">Followers</h3>
+                                            <h3 class="m-xs">{{influencer.instagram_name}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            </div>
+            <div ng-show="isSet(3)">
+                <div class="panel-body">
+                    <div class="campaignManage" ng-repeat="influencer in campaignInfluencers | filter: { status: 'rejected'}">
+                        <div class="ibox-content border-left-right">
+                            <div class="col-md-2">
+                                <div class="widget text-center">
+                                    <h5>{{influencer.first_name}} {{influencer.last_name}}</h5>
+                                    <img alt="image" class="img-circle m-t-xs img-responsive inline" src="{{influencer.twitter_image}}">
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <div class="widget text-center">
+                                        <div class="m-b-md">
+                                            <i class="fa fa-twitter fa-4x"></i>
+                                            <h1>{{influencer.twitter_followers}}</h1>
+                                            <h3 class="font-bold no-margins">Followers</h3>
+                                            <h3 class="m-xs">{{influencer.twitter_screen_name}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <div class="widget text-center">
+                                        <div class="m-b-md">
+                                            <i class="fa fa-youtube fa-4x"></i>
+                                            <h1>{{influencer.youtube_subscribers}}</h1>
+                                            <h3 class="font-bold no-margins">Subscribers</h3>
+                                            <h3 class="m-xs">{{influencer.youtube_name}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <div class="widget text-center">
+                                        <div class="m-b-md">
+                                            <i class="fa fa-instagram fa-4x"></i>
+                                            <h1>{{influencer.instagram_followers}}</h1>
+                                            <h3 class="font-bold no-margins">Followers</h3>
+                                            <h3 class="m-xs">{{influencer.instagram_name}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

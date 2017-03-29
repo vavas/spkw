@@ -1,0 +1,37 @@
+
+    <div>
+        <h2 class="inviteHeader" ng-bind-html="ngDialogData.title"></h2>
+        <h2>Message</h2>
+    <textarea class="form-control"
+              ng-model="$parent.inviteMessageModel"
+              id="exampleTextarea"
+              rows="3"></textarea>
+        <div class="compensationInvite">
+            <div>Compensation: $
+            <span class="influencerCompensationInput"
+                  ng-show="!collapsedCompensation"
+                  ng-bind-html="ngDialogData.compensation"></span>
+                <input class="editInviteInput"
+                       type="number"
+                       min="0"
+                       ng-show="collapsedCompensation"
+                       value="{{ngDialogData.compensation}}"
+                       ng-model="$parent.inviteCompensationIn"/> USD
+                <button class="btn btn-link" ng-click="collapsedCompensation=!collapsedCompensation">
+                    edit
+                </button>
+            </div>
+            <div>Other compensation:
+            <span ng-bind-html="ngDialogData.other_compensation"
+                  ng-show="!collapsedOtherCompensation"></span>
+                <input class="editInviteInput"
+                       type="text"
+                       ng-show="collapsedOtherCompensation"
+                       value="{{ngDialogData.other_compensation}}"
+                       ng-model="$parent.inviteOtherCompensationIn"/>
+                <button class="btn btn-link" ng-click="collapsedOtherCompensation=!collapsedOtherCompensation">
+                    edit
+                </button></div>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="closeThisDialog('confirm')">Send invite</button>
+    </div>
